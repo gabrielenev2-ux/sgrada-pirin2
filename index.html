@@ -111,6 +111,9 @@
       <button onclick="filterFloor('floor1')" class="tab-btn px-3.5 py-1.5 text-xs font-bold rounded-xl bg-white text-slate-700 border border-slate-200 shrink-0">
         Партер • Офиси
       </button>
+      <button onclick="filterFloor('suteren')" class="tab-btn px-3.5 py-1.5 text-xs font-bold rounded-xl bg-white text-slate-700 border border-slate-200 shrink-0">
+        Сутерен • Паркинг
+      </button>
     </div>
 
     <!-- Карти с имотите -->
@@ -245,6 +248,60 @@
           <div class="border-t border-slate-100 pt-3 flex justify-between items-center text-xs">
             <span class="text-slate-400 font-medium">Етаж 2 (+3.25)</span>
             <button onclick="openModal('Апартамент 1 (112.9 м²)', 'Етаж 2 • 3-стаен: голяма дневна зона (35.1 м²), 2 спални, 2 бани, килер и балкон.', 'floor 2.png')" class="font-bold text-amber-600 hover:text-amber-700 flex items-center gap-1">
+              Виж план &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- СУТЕРЕН: ЗАТВОРЕНИ ГАРАЖИ И СКЛАДОВЕ -->
+      <div class="property-card suteren bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+        <div class="relative cursor-pointer overflow-hidden group" onclick="openModal('Сутерен • Затворени гаражи и складове', 'Кота -2.95 • 4 индивидуални затворени гаража (оранжева зона) и 2 самостоятелни складови помещения (розова зона).', 'suteren-1.jpg')">
+          <img src="suteren-1.jpg" alt="План Сутерен Гаражи" class="w-full h-44 object-cover object-center group-hover:scale-105 transition duration-300">
+          <div class="absolute inset-0 bg-slate-950/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <span class="bg-white/90 text-slate-900 text-xs font-bold px-3 py-1.5 rounded-lg shadow">Увеличи плана</span>
+          </div>
+          <span class="absolute top-2 left-2 bg-amber-500 text-slate-950 text-[10px] font-extrabold px-2.5 py-0.5 rounded">4 гаража + 2 склада</span>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-baseline mb-1">
+            <h4 class="text-base font-bold text-slate-900">Индивидуални гаражи</h4>
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">Свободни</span>
+          </div>
+          <p class="text-xl font-extrabold text-slate-900 mb-1">4 гаража <span class="text-[11px] font-normal text-slate-500">+ 2 склада</span></p>
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Самостоятелни затворени гаражни клетки с автоматични ролетни врати и две складови помещения с лесен достъп.
+          </p>
+          <div class="border-t border-slate-100 pt-3 flex justify-between items-center text-xs">
+            <span class="text-slate-400 font-medium">Сутерен (-2.95)</span>
+            <button onclick="openModal('Сутерен • Затворени гаражи и складове', 'Кота -2.95 • 4 индивидуални затворени гаража (оранжева зона) и 2 самостоятелни складови помещения (розова зона).', 'suteren-1.jpg')" class="font-bold text-amber-600 hover:text-amber-700 flex items-center gap-1">
+              Виж план &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- СУТЕРЕН: ПАРКОМЕСТА И ИНВАЛИДНО МЯСТО -->
+      <div class="property-card suteren bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+        <div class="relative cursor-pointer overflow-hidden group" onclick="openModal('Сутерен • Паркоместа', 'Кота -2.95 • 8 открити подземни паркоместа + 1 специализирано паркомясто за хора с увреждания (синя зона) с директен подход към асансьора.', 'suteren-1.jpg')">
+          <img src="suteren-1.jpg" alt="План Сутерен Паркоместа" class="w-full h-44 object-cover object-center group-hover:scale-105 transition duration-300">
+          <div class="absolute inset-0 bg-slate-950/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <span class="bg-white/90 text-slate-900 text-xs font-bold px-3 py-1.5 rounded-lg shadow">Увеличи плана</span>
+          </div>
+          <span class="absolute top-2 left-2 bg-blue-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded">8 места + 1 инвалидно</span>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-baseline mb-1">
+            <h4 class="text-base font-bold text-slate-900">Подземни паркоместа</h4>
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">Свободни</span>
+          </div>
+          <p class="text-xl font-extrabold text-slate-900 mb-1">9 паркоместа общо</p>
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            8 отворени паркоместа за маневриране и 1 разширено паркомясто за хора с намалена подвижност точно срещу асансьорната клетка.
+          </p>
+          <div class="border-t border-slate-100 pt-3 flex justify-between items-center text-xs">
+            <span class="text-slate-400 font-medium">Сутерен (-2.95)</span>
+            <button onclick="openModal('Сутерен • Паркоместа', 'Кота -2.95 • 8 открити подземни паркоместа + 1 специализирано паркомясто за хора с увреждания (синя зона) с директен подход към асансьора.', 'suteren-1.jpg')" class="font-bold text-amber-600 hover:text-amber-700 flex items-center gap-1">
               Виж план &rarr;
             </button>
           </div>
