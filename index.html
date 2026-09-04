@@ -402,31 +402,32 @@
     </a>
   </div>
 
-<!-- Модален прозорец за чертежи с голям размер и Zoom -->
-  <div id="modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-2 sm:p-4">
-    <div class="bg-white w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[94vh]">
+<!-- Модален прозорец: по подразбиране чертежът се побира цял, приближава се с бутони или клик -->
+  <div id="modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-5">
+    <div class="bg-white w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
       
-      <!-- Хедър на модала -->
+      <!-- Хедър -->
       <div class="px-4 py-3 border-b border-slate-200 flex justify-between items-center bg-white shrink-0">
         <div>
-          <h5 id="modal-title" class="font-extrabold text-slate-900 text-sm sm:text-lg">План на обекта</h5>
+          <h5 id="modal-title" class="font-extrabold text-slate-900 text-sm sm:text-base">План на обекта</h5>
           <p id="modal-desc" class="text-[11px] sm:text-xs text-slate-500 line-clamp-1"></p>
         </div>
         <div class="flex items-center gap-1.5">
-          <!-- Бутони за Zoom -->
-          <button onclick="zoomPlan(-0.2)" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm flex items-center justify-center transition" title="Намали">−</button>
-          <button onclick="resetZoom()" class="px-2 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs flex items-center justify-center transition" title="Нулирай">100%</button>
-          <button onclick="zoomPlan(0.2)" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm flex items-center justify-center transition" title="Увеличи">+</button>
+          <button onclick="zoomPlan(-0.25)" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm flex items-center justify-center transition" title="Намали">−</button>
+          <button onclick="resetZoom()" class="px-2 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs flex items-center justify-center transition" title="Нулирай">Цял екран</button>
+          <button onclick="zoomPlan(0.25)" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm flex items-center justify-center transition" title="Увеличи">+</button>
           <button onclick="closeModal()" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-500 font-bold text-lg flex items-center justify-center transition ml-1">&times;</button>
         </div>
       </div>
 
-      <!-- Зона за чертежа (разгъната на максимум) -->
-      <div class="flex-1 overflow-auto bg-slate-100 p-2 flex items-center justify-center cursor-grab active:cursor-grabbing select-none" id="modal-canvas">
-        <img id="modal-img" src="" alt="Архитектурен план" class="max-w-none transition-transform duration-150 ease-out origin-center" style="transform: scale(1);">
+      <!-- Зона на плана: fit-to-screen с възможност за скрол при zoom -->
+      <div class="flex-1 overflow-auto bg-slate-100/70 p-3 flex items-center justify-center min-h-[320px]">
+        <div class="inline-block transition-transform duration-150 ease-out origin-center" id="img-wrapper">
+          <img id="modal-img" src="" alt="Архитектурен план" class="max-h-[62vh] max-w-full w-auto h-auto object-contain rounded-lg shadow-sm block mx-auto">
+        </div>
       </div>
 
-      <!-- Долна лента с действия -->
+      <!-- Долна лента -->
       <div class="p-3 border-t border-slate-200 bg-white flex gap-2 shrink-0">
         <a href="tel:+359885074413" class="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs sm:text-sm font-bold py-2.5 rounded-xl text-center transition shadow">
           Запитай за този обект
@@ -438,7 +439,6 @@
     </div>
   </div>
 
-  <!-- JS Функционалност -->
   <script>
     let currentZoom = 1;
 
@@ -467,9 +467,7 @@
       const img = document.getElementById('modal-img');
       img.src = imgSrc;
       
-      // Автоматично оразмеряване спрямо екрана
-      const isMobile = window.innerWidth < 640;
-      currentZoom = isMobile ? 1.4 : 1.15;
+      currentZoom = 1;
       updateZoom();
 
       document.getElementById('modal').classList.remove('hidden');
@@ -484,7 +482,7 @@
     }
 
     function zoomPlan(delta) {
-      currentZoom = Math.min(Math.max(0.6, currentZoom + delta), 3.0);
+      currentZoom = Math.min(Math.max(1.0, currentZoom + delta), 2.8);
       updateZoom();
     }
 
@@ -494,9 +492,9 @@
     }
 
     function updateZoom() {
-      const img = document.getElementById('modal-img');
-      if (img) {
-        img.style.transform = `scale(${currentZoom})`;
+      const wrapper = document.getElementById('img-wrapper');
+      if (wrapper) {
+        wrapper.style.transform = `scale(${currentZoom})`;
       }
     }
   </script>
